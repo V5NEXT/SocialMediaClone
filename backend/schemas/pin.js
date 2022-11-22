@@ -48,10 +48,10 @@ export default{
         of: [{type: 'save'}]
         },
         {
-            name: 'comments',
-            title: 'Comments',
+            name: 'comment',
+            title: 'Comment',
             type: 'array',
-            of: [{type : comment}]
+            of: [{type : 'comment'}]
         }
     ]
 }
