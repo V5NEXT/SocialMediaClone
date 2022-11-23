@@ -8,7 +8,14 @@ import logo from '../assets/logowhite.png';
 
 const Login = () => {
   return (
-    <div>Login</div>
+    <div className='flex justify-start items-center flex-col h-screen'>
+      <div className='relative w-full h-full'>
+        <video
+        src={shareVideo}
+        />
+
+      </div>
+    </div>
   )
 }
 
