@@ -12,8 +12,18 @@ const Login = () => {
       <div className='relative w-full h-full'>
         <video
         src={shareVideo}
+        type="video/mp4"
+        Loop
+        controls={false}
+        muted
+        autoPlay
+        className='w-full h-full object-cover'
         />
-
+          <div className='absolute flex flex-col justify-center items-center top-0 right-0 left-0 bottom-0 bg-blackOverlay'>
+                <div className='p-5'>
+                  <img src={logo} width="130px" alt="logo"/>
+                </div>
+          </div>
       </div>
     </div>
   )
