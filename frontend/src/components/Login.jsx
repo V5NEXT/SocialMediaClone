@@ -12,7 +12,13 @@ const responseGoogle = (response) =>{
   const decoded = jwt_decode(response.credential);
   localStorage.setItem('user', JSON.stringify(decoded));
 
-  const {name, sub, picture} = decoded;
+  const {name, sub, picture} = decoded
+  const doc = {
+    _id: sub,
+    _type: 'user',
+    userName: name,
+    image: picture
+  }
 }
 
   return (
