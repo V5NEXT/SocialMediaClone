@@ -4,10 +4,12 @@ import { useNavigate } from 'react-router-dom';
 import {FcGoogle} from 'react-icons/fc';
 import shareVideo from '../assets/share.mp4';
 import logo from '../assets/logowhite.png';
-import jwt_decode from 'jwt-decode'
+import jwt_decode from 'jwt-decode';
+import {client} from '../client';
 
 
 const Login = () => {
+  const navigate = useNavigate()
 const responseGoogle = (response) =>{
   const decoded = jwt_decode(response.credential);
   localStorage.setItem('user', JSON.stringify(decoded));
@@ -19,6 +21,11 @@ const responseGoogle = (response) =>{
     userName: name,
     image: picture
   }
+
+  client.createIfNotExists(doc)
+          .then(()=>{
+            navigate('/', {replace: true})
+          })
 }
 
   return (
