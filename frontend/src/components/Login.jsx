@@ -10,7 +10,9 @@ import jwt_decode from 'jwt-decode'
 const Login = () => {
 const responseGoogle = (response) =>{
   const decoded = jwt_decode(response.credential);
-  console.log(decoded)
+  localStorage.setItem('user', JSON.stringify(decoded));
+
+  const {name, sub, picture} = decoded;
 }
 
   return (
