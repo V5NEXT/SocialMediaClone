@@ -31,14 +31,15 @@ const sidebar = ({user, closeToggle}) => {
                   <img src={logo} alt="logo" className='w-full'/>
                 </Link>
                 <div className='flex flex-col gap-5'>
-                    <NavLink to="/" className={({isActive})=> isActive? isActiveStyle : isNotActiveStyle}>
+                    <NavLink to="/" className={({isActive})=> isActive? isActiveStyle : isNotActiveStyle} onClick={handleCLoseSidebar}>
                         <RiHomeFill/>
                         Home
                     </NavLink>
                     <h3 className='mt-2 px-5 text-base 2xl:text-xl'>Discover Categories</h3>
                     {categories.slice(0, categories.length-1).map((category)=>(
-                        <NavLink to={`/category/${category.name}`}>
-
+                        <NavLink to={`/category/${category.name}`}  className={({isActive})=> isActive? isActiveStyle : isNotActiveStyle} onClick={handleCLoseSidebar}
+                        key={category.name}>
+                                {category.name}
                         </NavLink>
                     ))}
                 </div>
