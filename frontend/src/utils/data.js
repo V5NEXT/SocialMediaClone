@@ -4,3 +4,7 @@ export const userQuery = (userId) => {
     return query
 
 }
+
+export const searchQuery = (searchTerm)=>{
+   const query = ``
+}

@@ -12,7 +12,7 @@ const Feed = () => {
   useEffect(() => {
     setLoading(true);
     if(categoryId){
-
+      const query = searchQuery(categoryId);
     } else{
 
     }
