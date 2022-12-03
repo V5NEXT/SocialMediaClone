@@ -5,6 +5,12 @@ export const userQuery = (userId) => {
 
 }
 
-export const searchQuery = (searchTerm)=>{
-   const query = ``
+export const searchQuery = (searchTerm) => {
+   const query = `*[_type == "pin" && match '${searchTerm}*' || category match '${searchTerm}*' || about match '${searchTerm}*']{
+    image {
+        asset -> {
+            url
+        }
+    }
+   }`
 }
