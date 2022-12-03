@@ -11,6 +11,23 @@ export const searchQuery = (searchTerm) => {
         asset -> {
             url
         }
+    },
+    _id,
+    destination,
+    postedBy -> {
+        _id,
+        userName,
+        image
+    },
+    save[] {
+        _key,
+        postedBy -> {
+            _id,
+            userName,
+            image
+        },
     }
    }`
+
+   return query
 }
