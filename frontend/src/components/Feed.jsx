@@ -4,7 +4,7 @@ import {useParams} from 'react-router-dom';
 import {client} from '../client';
 import MasonryLayout from './MasonryLayout';
 import Spinner from './Spinner';
-import { searchQuery } from '../utils/data';
+import { feedQuery, searchQuery } from '../utils/data';
 
 
 const Feed = () => {
@@ -22,7 +22,11 @@ const Feed = () => {
         setLoading(false);
        })
     } else{
-
+      client.fetch(feedQuery).
+      then((data)=>{
+        setPins(data);
+        setLoading(false)
+      })
     }
     
   }, [categoryId])
