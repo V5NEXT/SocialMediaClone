@@ -1,6 +1,8 @@
-import React from 'react'
+import React from 'react';
+import Masonry from 'react-masonry-css';
+import Pin from './Pin';
 
-const MasonryLayout = () => {
+const MasonryLayout = ({pins}) => {
   return (
     <div>MasonryLayout</div>
   )
