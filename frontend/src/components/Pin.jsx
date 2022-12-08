@@ -7,6 +7,11 @@ import { BsFillArrorUpRightCircleFill} from 'react-icons/bs';
 import { urlFor, client } from '../client'
 
 const Pin = ({pin:{postedBy, image, _id, destination}}) => {
+  const [postHovered, setPostHovered] = useState(false);
+  const [SavingPost, setSavingPost] = useState(false);
+  const navigate = useNavigate();
+
+  
   return (
     <div className='m-2'>
 
