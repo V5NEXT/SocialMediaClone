@@ -7,7 +7,6 @@ import { BsFillArrorUpRightCircleFill} from 'react-icons/bs';
 import { urlFor, client } from '../client'
 
 const Pin = ({pin:{postedBy, image, _id, destination}}) => {
-  console.log(image.asset.url)
   return (
     <div className='m-2'>
 
