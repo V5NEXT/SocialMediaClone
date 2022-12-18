@@ -13,7 +13,7 @@ const Pin = ({pin:{postedBy, image, _id, destination, save}}) => {
   const navigate = useNavigate();
   const user = fetchUser();
 
-  const alreadySaved = !!(save?.filter((item)=>item.postedBy._id === user.googleId))?.length
+  const alreadySaved = !!(save?.filter((item)=>item.postedBy._id === user.googleId))?.length;
   
   return ( 
     <div className='m-2'>
@@ -37,11 +37,11 @@ const Pin = ({pin:{postedBy, image, _id, destination, save}}) => {
                 </a>
               </div>
               {alreadySaved ? (
-                <button>
+                <button type='button' className='bg-red-500 '>
                   Saved
                   </button>
                   ):(
-                    <button>
+                    <button type='button' className='bg-red-500 opacity-70 hover:opacity-100 text-white font-bold px-5 py-1 text-base rounded-3xl hover:shadow-md outlined'>
                       Save
                     </button>
               )}
