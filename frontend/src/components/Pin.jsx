@@ -29,6 +29,7 @@ const Pin = ({pin:{postedBy, image, _id, destination, save}}) => {
           _ref: user.googleId
         }
       }])
+      .commit();
     }
   }
   return ( 
