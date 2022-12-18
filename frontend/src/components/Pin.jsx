@@ -14,9 +14,21 @@ const Pin = ({pin:{postedBy, image, _id, destination, save}}) => {
   const user = fetchUser();
 
   const alreadySaved = !!(save?.filter((item)=>item.postedBy._id === user.googleId))?.length;
-  const savePin = (_id)=>{
+  const savePin = (id)=>{
     if(!alreadySaved){
       setSavingPost(true);
+
+      client
+      .patch(id)
+      .setIfMissing({save:[]})
+      .insert('after', 'save[-1', [{
+        _key: uuidv4(),
+        userId: user.googleId,
+        postedBy:{
+          _type: 'postedBy',
+          _ref: user.googleId
+        }
+      }])
     }
   }
   return ( 
