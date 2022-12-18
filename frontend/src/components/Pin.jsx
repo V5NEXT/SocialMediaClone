@@ -29,7 +29,11 @@ const Pin = ({pin:{postedBy, image, _id, destination, save}}) => {
           _ref: user.googleId
         }
       }])
-      .commit();
+      .commit()
+      .then(()=>{
+        window.location.reload();
+        setSavingPost(false);
+      })
     }
   }
   return ( 
