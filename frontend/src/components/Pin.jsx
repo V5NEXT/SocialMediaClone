@@ -36,7 +36,7 @@ const Pin = ({pin:{postedBy, image, _id, destination, save}}) => {
                     <MdDownloadForOffline/>
                 </a>
               </div>
-              {alreadySaved?.length !== 0 ? (
+              {alreadySaved ? (
                 <button>
                   Saved
                   </button>
