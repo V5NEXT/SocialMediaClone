@@ -3,7 +3,7 @@ import {Link, Navigate, useNavigate} from 'react-router-dom';
 import {v4 as uuidv4} from 'uuid';
 import { MdDownloadForOffline} from 'react-icons/md';
 import { AiTwotoneDelete} from 'react-icons/ai';
-import { BsFillArrowRightCircleFill} from 'react-icons/bs';
+import { BsFillArrowRightCircleFill, BsWindowSidebar} from 'react-icons/bs';
 import { urlFor, client } from '../client'
 import { fetchUser } from '../utils/fetchUser';
 
@@ -30,6 +30,13 @@ const Pin = ({pin:{postedBy, image, _id, destination, save}}) => {
         window.location.reload();
       })
     }
+  }
+  const deletePin =(id)=>{
+    client
+    .delete(id)
+    .then(()=>{
+      BsWindowSidebar.location.reload();
+    })
   }
   return ( 
     <div className='m-2'>
@@ -75,8 +82,17 @@ const Pin = ({pin:{postedBy, image, _id, destination, save}}) => {
                 rel='noreferrer'
                 className='bg-white flex items-center gap-2 text-black font-bold p-2 pl-4 pr-4 rounded-full opacaity-70 hover:opacity-100 hover:shadow-md'>
                   <BsFillArrowRightCircleFill/>
-                  {destination.slice(8,17)}
+                  {destination.length > 20 ?destination.slice(8,20):destination.slice(8)}
                 </a>
+              )}
+              {postedBy?._id === user.sub && (
+                <button onClick={(e)=>{
+                  e.stopPropagation();
+                  deletePin(_id);
+                }}
+                type='button' className='bg-white opacity-70 hover:opacity-100 text-dark font-bold px-1 py-1 text-base rounded-3xl hover:shadow-md outlined-none'>
+                    <AiTwotoneDelete/>
+                </button>
               )}
             </div>
           </div>
