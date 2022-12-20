@@ -12,27 +12,30 @@ const Pin = ({pin:{postedBy, image, _id, destination, save}}) => {
   const [SavingPost, setSavingPost] = useState(false);
   const navigate = useNavigate();
   const user = fetchUser();
+  console.log(save)
 
-  const alreadySaved = !!(save?.filter((item)=>item.postedBy._id === user.googleId))?.length;
+  const alreadySaved = !!(save?.filter((item)=> item?.postedBy?._id === user.sub))?.length;
+
   const savePin = (id)=>{
+    console.log(id);
     if(!alreadySaved){
+      console.log("Not already saved block");
       setSavingPost(true);
 
       client
       .patch(id)
       .setIfMissing({save:[]})
-      .insert('after', 'save[-1', [{
+      .insert('after', 'save[-1]', [{
         _key: uuidv4(),
-        userId: user.googleId,
+        userId: user.sub,
         postedBy:{
           _type: 'postedBy',
-          _ref: user.googleId
+          _ref: user.sub
         }
       }])
       .commit()
       .then(()=>{
         window.location.reload();
-        setSavingPost(false);
       })
     }
   }
