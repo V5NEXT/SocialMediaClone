@@ -12,14 +12,11 @@ const Pin = ({pin:{postedBy, image, _id, destination, save}}) => {
   const [SavingPost, setSavingPost] = useState(false);
   const navigate = useNavigate();
   const user = fetchUser();
-  console.log(save)
 
   const alreadySaved = !!(save?.filter((item)=> item?.postedBy?._id === user.sub))?.length;
 
   const savePin = (id)=>{
-    console.log(id);
     if(!alreadySaved){
-      console.log("Not already saved block");
       setSavingPost(true);
 
       client
