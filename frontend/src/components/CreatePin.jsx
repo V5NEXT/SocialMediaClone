@@ -22,11 +22,21 @@ const CreatePin = ({user}) => {
 
   const navigate = useNavigate();
   const uploadImage = (e)=>{
-    const {type} = e.target.files[0]
+    const {type, name} = e.target.files[0];
 
     if(type === 'image/png' || type === 'image/svg' || type === 'image/jpg' || type === 'image/gif'||type === 'image/tiff'){
       setWrongImageType(false);
       setloading(true);
+
+      client.assets
+      .upload('image', e.target.files[0], {contentType : type, filename:name})
+      .then((document)=>{
+        setimageAsset(document)
+        setloading(false)
+      })
+      .catch((error)=>{
+        console.log('Image upload error', error);
+      })
     }
     else{
       setWrongImageType(true)
