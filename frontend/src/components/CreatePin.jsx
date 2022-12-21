@@ -21,6 +21,17 @@ const CreatePin = ({user}) => {
   const [WrongImageType, setWrongImageType] = useState(null);
 
   const navigate = useNavigate();
+  const uploadImage = (e)=>{
+    const {type} = e.target.files[0]
+
+    if(type === 'image/png' || type === 'image/svg' || type === 'image/jpg' || type === 'image/gif'||type === 'image/tiff'){
+      setWrongImageType(false);
+      setloading(true);
+    }
+    else{
+      setWrongImageType(true)
+    }
+  }
 
 
 
@@ -43,8 +54,20 @@ const CreatePin = ({user}) => {
         <p className='font-bols text-2xl'>
           <AiOutlineCloudDownload/>
         </p>
+        <p className='text-lg'>
+        Click to upload
+        </p>
         </div>
+        <p className='mt-32 text-gray-400'>
+          Use high-quality JPG, SVG, PNG, GIF less than 20MB
+        </p>
       </div>
+      <input
+      type="file"
+      name="upload-image"
+      onChange={uploadImage}
+      className='w-0 h-0'
+      />
     </label>
   ): (<p>SOmething</p>)}
  </div>
