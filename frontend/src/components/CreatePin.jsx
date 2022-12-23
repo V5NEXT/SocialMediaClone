@@ -43,6 +43,38 @@ const CreatePin = ({user}) => {
     }
   }
 
+  const savePin = ()=>{
+    if(title && about && imageAsset?._id && category){
+      const doc = {
+        _type :'pin',
+        title,
+        about,
+        destination,
+        image:{
+          _type: 'image',
+          asset: {
+            _type: 'reference',
+            _ref: imageAsset?._id
+          }
+        },
+        userId: user.sub,
+        postedBy: {
+          _type: 'postedBy',
+          _ref: user._id,
+        },
+        category,
+      }
+      client.create(doc)
+      .then(()=>{
+        navigate('/')
+      })
+    } else{
+      setfields(true);
+
+      setTimeout(()=> setfields(false),2000)
+    }
+  }
+
 
 
   return (
@@ -141,7 +173,15 @@ const CreatePin = ({user}) => {
              ))}
           </select>
         </div>
-         
+         <div className='flex justify-end items-end mt-5'>
+          <button 
+            type='button'
+            onClick={savePin}
+            className='bg-red-500 text-white font-bold p-2 rounded-full w-28 outline-none'
+                  
+          >Save Pin</button>
+
+         </div>
       </div>
 </div>
 </div>
