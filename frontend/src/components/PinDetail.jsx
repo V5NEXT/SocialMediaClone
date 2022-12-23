@@ -7,7 +7,7 @@ import {v4 as uuidv4 } from 'uuid';
 import {client, urlFor} from '../client';
 import MasonryLayout from './MasonryLayout';
 import {pinDetailMorePinQuery, pinDetailQuery} from '../utils/data';
-import Spinner from './Spinner'
+import Spinner from './Spinner';
 
 const PinDetail = ({user}) => {
   return (
