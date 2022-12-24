@@ -19,7 +19,29 @@ const PinDetail = ({user}) => {
 
  if(!pinDetail) return <Spinner message="Loadind Pin"/>
 
-  return (
+  const fetchPinDetails = ()=>{
+
+    let query = pinDetailQuery(pinId);
+
+    if(query){
+      client.fetch(query)
+      .then((data)=>{
+        setPinDetail(data[0]);
+
+        if(data[0]){
+          query = pinDetailMorePinQuery(data[0]);
+
+          client.fetch(query)
+          .then((res)=>{
+            setPins(res)
+          })
+        }
+      })
+    }
+
+  }
+
+   return (
     <div>PinDetail</div>
   )
 }
