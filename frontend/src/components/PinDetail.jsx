@@ -9,6 +9,7 @@ import MasonryLayout from './MasonryLayout';
 import {pinDetailMorePinQuery, pinDetailQuery} from '../utils/data';
 import Spinner from './Spinner';
 
+
 const PinDetail = ({user}) => {
  const [pins, setPins] = useState(null);
  const [pinDetail, setPinDetail] = useState(null);
@@ -16,8 +17,6 @@ const PinDetail = ({user}) => {
  const [addingComment, setAddingComment] = useState(false);
 
  const {pinId} = useParams();
-
- if(!pinDetail) return <Spinner message="Loadind Pin"/>
 
   const fetchPinDetails = ()=>{
 
@@ -40,6 +39,11 @@ const PinDetail = ({user}) => {
     }
 
   }
+
+  useEffect(() => {
+    fetchPinDetails();
+  }, [pinId])
+  if(!pinDetail) return <Spinner message="Loadind Pin"/>
 
    return (
     <div>PinDetail</div>
