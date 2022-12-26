@@ -68,6 +68,7 @@ const PinDetail = ({user}) => {
   if(!pinDetail) return <Spinner message="Loadind Pin"/>
 
    return (
+    <>
     <div className='flex xl:flex-col flex-col m-auto bg-white' style={{maxWidth: '1500px', borderRadius:'32px'}}>
       <div className='flex justify-center items-center md:items-start flex-initial'>
         <img
@@ -142,6 +143,16 @@ const PinDetail = ({user}) => {
      </div>
       </div>
     </div>
+    {pins? (
+      <>
+      <h2 className='text-center font-bold text-2x mt-8 mb-4'>
+      More Like this
+      </h2>
+      </>
+    ):(
+      <Spinner message="Loading more pins"/>
+    )}
+    </>
   )
 }
 
