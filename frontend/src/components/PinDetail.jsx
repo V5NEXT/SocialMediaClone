@@ -100,9 +100,9 @@ const PinDetail = ({user}) => {
         ))}
      </div>
      <div className='flex flex-wrap mt-6 gap-3'>
-     <Link to={`user-profile/${pinDetail.postedBy?._id}`} className='flex gap-2 mt-5 items-centerbg-white rounded-lg'>
+     <Link to={`user-profile/${pinDetail.postedBy?._id}`}>
      <img
-     className='w-8 h-8 rounded-full object-cover'
+     className='w-10 h-10 rounded-full cursor-pointer'
      src={pinDetail.postedBy?.imageUrl}
      alt="user-profile"
      />
@@ -112,6 +112,11 @@ const PinDetail = ({user}) => {
              placeholder='Add a comment'
              value={comment}
              onChange={((e)=> setComment(e.target.value))}/>
+             <button type='button'
+                     className='bg-red-500 text-white rounded-full px-6 py-2 font-semibold text-base outline-none'
+                     onClick={addComent}>
+                    {addingComment? 'Posting the comment...': 'Posted'}  
+             </button>
      </div>
       </div>
     </div>
