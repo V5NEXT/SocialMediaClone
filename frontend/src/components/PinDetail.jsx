@@ -17,7 +17,29 @@ const PinDetail = ({user}) => {
  const [addingComment, setAddingComment] = useState(false);
 
  const {pinId} = useParams();
+ const addComment = () =>{
+  if(comment){
+    setAddingComment(true);
 
+    client.
+    patch(pinId)
+    .setIfMissing({comments:[]})
+    .insert('after', 'comments[-1]',[{
+      comment,
+      _key:uuidv4(),
+      postedBy:{
+        _type: 'postedBy',
+        _ref: user.sub
+      }
+    }])
+    .commit()
+    .then(()=>{
+      fetchPinDetails();
+      setComment('');
+      setAddingComment(false);
+    })
+  }
+}
   const fetchPinDetails = ()=>{
 
     let query = pinDetailQuery(pinId);
@@ -89,12 +111,12 @@ const PinDetail = ({user}) => {
      <div className='max-h-370 overflow-y-auto'>
         {pinDetail?.comments?.map((comment,i)=>(
             <div className='flex gap-2 items-center mt-5 bg-white rounded-lg' key={i}>
-              <img src={comment.postedBy.image}
+              <img src={comment?.postedBy?.image}
                   alt="user-profile"
                   className='w-10 h-10 rounded-full cursor-pointer'/>
                   <div className='flex flex-col'>
-                    <p className='font-bold'>{comment.postedBy.userName}</p>
-                    <p>{comment.comment}</p>
+                    <p className='font-bold'>{comment?.postedBy?.userName}</p>
+                    <p>{comment?.comment}</p>
                   </div>
             </div>
         ))}
@@ -114,8 +136,8 @@ const PinDetail = ({user}) => {
              onChange={((e)=> setComment(e.target.value))}/>
              <button type='button'
                      className='bg-red-500 text-white rounded-full px-6 py-2 font-semibold text-base outline-none'
-                     onClick={addComent}>
-                    {addingComment? 'Posting the comment...': 'Posted'}  
+                     onClick={addComment}>
+                    {addingComment? 'Posting the comment...': 'Post'}  
              </button>
      </div>
       </div>
