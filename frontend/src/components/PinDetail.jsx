@@ -77,7 +77,7 @@ const PinDetail = ({user}) => {
               {pinDetail.about}
           </p>
         </div>
-        <Link to={`user-profile/${pinDetail.postedBy?._id}`} className='flex gap-2 mt-2 items-center'>
+        <Link to={`user-profile/${pinDetail.postedBy?._id}`} className='flex gap-2 mt-5 items-centerbg-white rounded-lg'>
      <img
      className='w-8 h-8 rounded-full object-cover'
      src={pinDetail.postedBy?.imageUrl}
@@ -85,6 +85,7 @@ const PinDetail = ({user}) => {
      />
      <p className='font-semibold capitalize'>{pinDetail.postedBy?.userName}</p>
      </Link>
+     <h2>Comments</h2>
       </div>
     </div>
   )
