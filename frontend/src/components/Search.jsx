@@ -11,7 +11,13 @@ const Search = ({searchTerm}) => {
     const [loading, setLoading] = useState(false);
 
   return (
-    <div>Search</div>
+    <div>
+      {loading && <Spinner message="Searching for pins"/>}
+      {pins?.length!==0 && <MasonryLayout pins={pins}/>}
+      {pins?.length ===0 && searchTerm !== '' && !loading &&
+      <div className='mt-10 text-center text-xl'>No Pins Found</div>
+      }
+    </div>
   )
 }
 
