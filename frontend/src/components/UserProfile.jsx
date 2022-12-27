@@ -3,7 +3,7 @@ import { AiOutlineLogout } from 'react-icons/ai';
 import { useParams, useNavigate } from 'react-router-dom';
 import { googleLogout } from '@react-oauth/google';
 
-import { userCreatedPinsQuery, userQuery, userSavedPinQuery } from '../utils/data';
+import { userCreatedPinsQuery, userQuery, userSavedPinQuery, userSavedPinsQuery } from '../utils/data';
 import { client } from '../client';
 import MasonryLayout from './MasonryLayout';
 import Spinner from './Spinner';
@@ -28,6 +28,25 @@ const UserProfile = () => {
       setUser(data[0]);
     })
   }, [userId])
+
+  useEffect(() => {
+    if(text === 'Created'){
+      const createdPinsQuery = userCreatedPinsQuery(userId);
+      client.fetch(createdPinsQuery)
+      .then((data)=>{
+        setPins(data);
+      })
+    }
+    else{
+      const savedPinsQuery = userSavedPinsQuery(userId);
+      client.fetch(savedPinsQuery)
+      .then((data)=>{
+        setPins(data);
+      })
+    }
+ 
+  }, [text, userId])
+  
   const logout =()=>{
     localStorage.clear();
     navigate('/login')
