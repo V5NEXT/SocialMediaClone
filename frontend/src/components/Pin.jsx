@@ -82,7 +82,7 @@ const Pin = ({pin:{postedBy, image, _id, destination, save}}) => {
                 rel='noreferrer'
                 className='bg-white flex items-center gap-2 text-black font-bold p-2 pl-4 pr-4 rounded-full opacaity-70 hover:opacity-100 hover:shadow-md'>
                   <BsFillArrowRightCircleFill/>
-                  {destination.length > 20 ?destination.slice(8,20):destination.slice(8)}
+                  {destination.length > 15 ? `${destination.slice(0,15)}...`: destination}
                 </a>
               )}
               {postedBy?._id === user.sub && (
@@ -92,7 +92,7 @@ const Pin = ({pin:{postedBy, image, _id, destination, save}}) => {
                 }}
                 type='button' className='bg-white opacity-70 hover:opacity-100 text-dark font-bold px-1 py-1 text-base rounded-3xl hover:shadow-md outlined-none'>
                     <AiTwotoneDelete/>
-                </button>
+               </button>
               )}
             </div>
           </div>
