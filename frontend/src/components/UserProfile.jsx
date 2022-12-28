@@ -49,6 +49,7 @@ const UserProfile = () => {
   
   const logout =()=>{
     localStorage.clear();
+    googleLogout();
     navigate('/login')
   }
   
@@ -75,22 +76,29 @@ const UserProfile = () => {
               />
               <h1 className='font-bold text-3xl text-center mt-3'>{user.userName}</h1>
               <div className='absolute top-0 z-1 right-0 p-2'>
-                {userId === user.sub &&(
-                  <googleLogout
-                        clientId={process.env.REACT_APP_GOOGLE_API_TOKEN}
-                         render={(renderProps)=>(
-                         <button
+                {userId === user._id &&(
+                  <button
                            type='button'
                            className='bg-white p-2 rounded-full cursor-pointer outline-none shadow-md'
-                           onClick={renderProps.onClick}
-                           disabled={renderProps.disabled}
+                           onClick={logout}
                           >
                             <AiOutlineLogout color='red' fontSize={21}/>
                           </button>
-                                    )}
-                        onLogoutSuccess={logout}            
-                        cookiePolicy="single_host_origin"
-                   />
+                  // <googleLogout
+                  //       clientId={process.env.REACT_APP_GOOGLE_API_TOKEN}
+                  //        render={(renderProps)=>(
+                  //        <button
+                  //          type='button'
+                  //          className='bg-white p-2 rounded-full cursor-pointer outline-none shadow-md'
+                  //          onClick={renderProps.onClick}
+                  //          disabled={renderProps.disabled}
+                  //         >
+                  //           <AiOutlineLogout color='red' fontSize={21}/>
+                  //         </button>
+                  //                   )}
+                  //       onLogoutSuccess={logout}            
+                  //       cookiePolicy="single_host_origin"
+                  //  />
                 )}
               </div>
           </div>
