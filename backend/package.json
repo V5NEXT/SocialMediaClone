@@ -4,7 +4,7 @@
   "version": "1.0.0",
   "description": "",
   "main": "package.json",
-  "author": "VISHNU VISWAMBHARAN <vishnuviswambharan1994@gmail.com>",
+  "author": "VISHNU VISWAMBHARAN",
   "license": "UNLICENSED",
   "scripts": {
     "start": "sanity start",
